@@ -1,0 +1,10 @@
+{
+  "expo": {
+    "name": "marvel-market",
+    "slug": "marvel-market",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}
