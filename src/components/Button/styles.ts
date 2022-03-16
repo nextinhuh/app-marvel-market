@@ -8,7 +8,7 @@ type ContainerProps = {
 }
 
 export const Container = styled(TouchableOpacity) <ContainerProps>`
-    width: 100px;
+    width: 90px;
     height: 40px;
     border-radius: 20px;
     border-width: 3px;

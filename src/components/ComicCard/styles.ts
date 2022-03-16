@@ -4,6 +4,7 @@ import { LinearGradient } from 'expo-linear-gradient';
 export const Container = styled.View`
     height: 120px;
     width: 100%;
+    margin-bottom: 80px;
 `;
 
 export const CardContent = styled(LinearGradient).attrs(({ theme }) => ({
@@ -38,6 +39,9 @@ export const DescriptionContainer = styled.View`
 
 export const Title = styled.Text`
     font-size: 18px;
+    margin-bottom: 15px;
+    padding: 15px;
+    text-align: center;
 
     ${({ theme }) => css`
         font-family: ${theme.FONTS.TITLE};
@@ -47,7 +51,6 @@ export const Title = styled.Text`
 
 export const ButtonContainer = styled.View`
     flex-direction: row;
-    margin-top: 50px;
     width: 90%;
     align-items: center;
     justify-content: space-between;

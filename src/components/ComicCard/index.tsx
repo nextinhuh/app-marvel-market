@@ -13,16 +13,17 @@ import {
 
 type Props = ViewProps & {
     uri: string;
+    title: string;
 }
 
-export function ComicCard({ uri, ...rest }: Props) {
+export function ComicCard({ uri, title, ...rest }: Props) {
     return (
         <Container {...rest}>
             <CardContent>
                 <Image source={{ uri }} />
 
                 <DescriptionContainer>
-                    <Title>Spider-man (2003) #1</Title>
+                    <Title>{title}</Title>
 
                     <ButtonContainer>
                         <Button
@@ -37,7 +38,7 @@ export function ComicCard({ uri, ...rest }: Props) {
                             type='secondary'
                             hasIcon
                             style={{
-                                width: 95
+                                width: 95,
                             }}
                         />
                     </ButtonContainer>
