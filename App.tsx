@@ -3,8 +3,7 @@ import AppLoading from 'expo-app-loading';
 import { StatusBar } from 'expo-status-bar';
 import { ThemeProvider } from 'styled-components/native';
 import { useFonts, Roboto_400Regular, Roboto_700Bold } from '@expo-google-fonts/roboto';
-
-import { ComicDetail } from '@screens/ComicDetail';
+import { Routes } from './src/routes';
 
 import themes from './src/themes';
 
@@ -22,7 +21,7 @@ export default function App() {
     <ThemeProvider theme={themes}>
       <StatusBar style='light' translucent backgroundColor='transparent' />
 
-      <ComicDetail />
+      <Routes />
     </ThemeProvider>
   );
 }

@@ -19,13 +19,23 @@ import {
     PriceTitle,
     PriceSubject,
 } from './styles';
+import { useNavigation, useRoute } from '@react-navigation/native';
+import { ComicNavigationProps } from '../../@types/navigation';
 
 export function ComicDetail() {
+    const navigation = useNavigation();
+    const route = useRoute();
+    const { comic } = route.params as ComicNavigationProps;
+
+    function handleGoBack() {
+        navigation.goBack();
+    }
+
     return (
         <Container>
 
             <Header
-                source={{ uri: 'https://i.annihil.us/u/prod/marvel/i/mg/c/80/4bc5fe7a308d7/detail.jpg' }}
+                source={{ uri: comic?.uri }}
             >
                 <ButtonContainer>
                     <Button
@@ -36,6 +46,7 @@ export function ComicDetail() {
                             width: 50,
                             borderRadius: 25
                         }}
+                        onPress={handleGoBack}
                     />
                     <Button
                         hasCartIcon
@@ -49,7 +60,7 @@ export function ComicDetail() {
                 </ButtonContainer>
 
 
-                <ComicTitle>Ant-Man (2003) #4</ComicTitle>
+                <ComicTitle>{comic?.title}</ComicTitle>
 
             </Header>
 
@@ -65,25 +76,41 @@ export function ComicDetail() {
 
                 <DetailsInfoContainer>
                     <InfoContent>
-                        <InfoTitle>Published:</InfoTitle>
-                        <InfoSubject>December 31, 2019</InfoSubject>
+                        <InfoTitle>Publicado:</InfoTitle>
+                        <InfoSubject>{comic?.dates.map(comicData => {
+                            if (comicData.type === 'onsaleDate') {
+                                return comicData.date;
+                            }
+                        })}</InfoSubject>
                     </InfoContent>
 
                     <InfoContent>
-                        <InfoTitle>Writer:</InfoTitle>
-                        <InfoSubject>Daniel Way</InfoSubject>
+                        <InfoTitle>Escritor:</InfoTitle>
+                        <InfoSubject>{comic?.creators.map(comicData => {
+                            if (comicData.role === 'writer') {
+                                return comicData.name;
+                            }
+                        })}</InfoSubject>
                     </InfoContent>
                 </DetailsInfoContainer>
 
                 <DetailsInfoContainer>
                     <InfoContent>
-                        <InfoTitle>Cover Artist:</InfoTitle>
-                        <InfoSubject>December 31, 2019</InfoSubject>
+                        <InfoTitle>Letrista:</InfoTitle>
+                        <InfoSubject>{comic?.creators.map(comicData => {
+                            if (comicData.role === 'letterer') {
+                                return comicData.name;
+                            }
+                        })}</InfoSubject>
                     </InfoContent>
 
                     <InfoContent>
-                        <InfoTitle>Penciller:</InfoTitle>
-                        <InfoSubject>Clayton Crain</InfoSubject>
+                        <InfoTitle>Desenhista:</InfoTitle>
+                        <InfoSubject>{comic?.creators.map(comicData => {
+                            if (comicData.role === 'penciler' || comicData.role === 'penciler (cover)') {
+                                return comicData.name;
+                            }
+                        })}</InfoSubject>
                     </InfoContent>
                 </DetailsInfoContainer>
             </DetailsContent>
@@ -102,7 +129,7 @@ export function ComicDetail() {
                 <DetailsPriceContainer>
                     <PriceContent>
                         <PriceTitle>R$</PriceTitle>
-                        <PriceSubject>48,56</PriceSubject>
+                        <PriceSubject>{comic?.price}</PriceSubject>
                     </PriceContent>
 
                     <Button

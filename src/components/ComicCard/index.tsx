@@ -14,9 +14,17 @@ import {
 type Props = ViewProps & {
     uri: string;
     title: string;
+    onDetail: () => void;
+    onBuy: () => void;
 }
 
-export function ComicCard({ uri, title, ...rest }: Props) {
+export function ComicCard({
+    uri,
+    title,
+    onBuy,
+    onDetail,
+    ...rest
+}: Props) {
     return (
         <Container {...rest}>
             <CardContent>
@@ -31,15 +39,16 @@ export function ComicCard({ uri, title, ...rest }: Props) {
                             style={{
                                 width: 95
                             }}
+                            onPress={onDetail}
                         />
 
                         <Button
-                            title='Comprar'
                             type='secondary'
-                            hasIcon
+                            hasCartIcon
                             style={{
                                 width: 95,
                             }}
+                            onPress={onBuy}
                         />
                     </ButtonContainer>
                 </DescriptionContainer>
