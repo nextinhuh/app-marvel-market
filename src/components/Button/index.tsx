@@ -11,6 +11,8 @@ type Props = TouchableOpacityProps & {
     isLoading?: boolean;
     hasCartIcon?: boolean;
     hasArrowLeftIcon?: boolean;
+    hasPlusIcon?: boolean;
+    hasMinusIcon?: boolean;
 }
 
 export function Button({
@@ -18,6 +20,8 @@ export function Button({
     type = 'primary',
     hasCartIcon = false,
     hasArrowLeftIcon = false,
+    hasPlusIcon = false,
+    hasMinusIcon = false,
     ...rest
 }: Props) {
     const { COLORS } = useTheme();
@@ -39,6 +43,29 @@ export function Button({
                     size={24}
                 />
             }
+
+            {hasPlusIcon &&
+                <AntDesign
+                    name="plus"
+                    color='#FFF'
+                    size={19}
+                    style={{
+                        marginTop: 18
+                    }}
+                />
+            }
+
+            {hasMinusIcon &&
+                <AntDesign
+                    name="minus"
+                    color='#FFF'
+                    size={24}
+                    style={{
+                        marginTop: 17
+                    }}
+                />
+            }
+
             {!hasArrowLeftIcon && !hasCartIcon &&
                 <Title>
                     {title}

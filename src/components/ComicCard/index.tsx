@@ -1,5 +1,9 @@
 import React from 'react';
 import { ViewProps } from 'react-native';
+import { Badge } from 'react-native-paper';
+
+import { ComicProps } from '@hooks/comic';
+
 import { Button } from '../Button';
 
 import {
@@ -8,50 +12,112 @@ import {
     Image,
     Title,
     ButtonContainer,
-    DescriptionContainer
+    DescriptionContainer,
+    CartContainer,
+    PriceContent,
+    PriceSubject,
+    PriceTitle,
+    QuantityContainer,
+    QuantityText
 } from './styles';
 
 type Props = ViewProps & {
-    uri: string;
-    title: string;
-    onDetail: () => void;
-    onBuy: () => void;
+    comic: ComicProps;
+    hasDescription?: boolean;
+    onDetail?: () => void;
+    addComicToCart?: () => void;
+    removeComicFromCart?: () => void;
 }
 
 export function ComicCard({
-    uri,
-    title,
-    onBuy,
+    comic,
     onDetail,
+    hasDescription,
+    addComicToCart,
+    removeComicFromCart,
     ...rest
 }: Props) {
     return (
         <Container {...rest}>
             <CardContent>
-                <Image source={{ uri }} />
+                <Image source={{ uri: comic.uri }} />
 
-                <DescriptionContainer>
-                    <Title>{title}</Title>
+                {hasDescription ? (
+                    <DescriptionContainer>
+                        <Title>{comic.title}</Title>
 
-                    <ButtonContainer>
-                        <Button
-                            title='Detalhes'
+                        <Badge
                             style={{
-                                width: 95
+                                position: 'absolute',
+                                top: 10,
+                                right: 15,
+                                backgroundColor: comic.rare ? 'orange' : 'green'
                             }}
-                            onPress={onDetail}
-                        />
+                        >{comic.rare ? 'RARO' : 'COMUN'}</Badge>
 
-                        <Button
-                            type='secondary'
-                            hasCartIcon
+                        <ButtonContainer>
+                            <Button
+                                title='Detalhes'
+                                style={{
+                                    width: 95
+                                }}
+                                onPress={onDetail}
+                            />
+
+                            <Button
+                                type='secondary'
+                                hasCartIcon
+                                style={{
+                                    width: 95,
+                                }}
+                                onPress={addComicToCart}
+                            />
+                        </ButtonContainer>
+                    </DescriptionContainer>
+                ) : (
+                    <CartContainer>
+                        <Title>{comic.title}</Title>
+
+                        <Badge
                             style={{
-                                width: 95,
+                                position: 'absolute',
+                                top: 10,
+                                right: 15,
+                                backgroundColor: comic.rare ? 'orange' : 'green'
                             }}
-                            onPress={onBuy}
-                        />
-                    </ButtonContainer>
-                </DescriptionContainer>
+                        >{comic.rare ? 'RARO' : 'COMUN'}</Badge>
+
+                        <PriceContent>
+                            <PriceTitle>R$</PriceTitle>
+                            <PriceSubject>{comic.price}</PriceSubject>
+
+                            <QuantityContainer>
+                                <Button
+                                    type='secondary'
+                                    hasPlusIcon
+                                    style={{
+                                        width: 40,
+                                        height: 40,
+                                        borderRadius: 20,
+                                    }}
+                                    onPress={addComicToCart}
+                                />
+                                <QuantityText>{comic.quantity}</QuantityText>
+                                <Button
+                                    type='secondary'
+                                    hasMinusIcon
+                                    style={{
+                                        width: 40,
+                                        height: 40,
+                                        borderRadius: 20
+                                    }}
+                                    onPress={removeComicFromCart}
+                                />
+                            </QuantityContainer>
+                        </PriceContent>
+                    </CartContainer>
+                )}
+
             </CardContent>
         </Container>
     );

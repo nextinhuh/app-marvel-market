@@ -1,4 +1,7 @@
 import React from 'react';
+import { useNavigation, useRoute } from '@react-navigation/native';
+import { ComicNavigationProps } from '../../@types/navigation';
+import { useComic } from '@hooks/comic';
 
 import { Button } from '@components/Button';
 import { Divider } from '@components/Divider';
@@ -19,16 +22,20 @@ import {
     PriceTitle,
     PriceSubject,
 } from './styles';
-import { useNavigation, useRoute } from '@react-navigation/native';
-import { ComicNavigationProps } from '../../@types/navigation';
+
 
 export function ComicDetail() {
     const navigation = useNavigation();
     const route = useRoute();
     const { comic } = route.params as ComicNavigationProps;
+    const { addComicToCart } = useComic();
 
     function handleGoBack() {
         navigation.goBack();
+    }
+
+    function handleCart() {
+        navigation.navigate('cart');
     }
 
     return (
@@ -56,6 +63,7 @@ export function ComicDetail() {
                             width: 50,
                             borderRadius: 25
                         }}
+                        onPress={handleCart}
                     />
                 </ButtonContainer>
 
@@ -139,6 +147,7 @@ export function ComicDetail() {
                             width: 150,
                             height: 40
                         }}
+                        onPress={() => addComicToCart(comic)}
                     />
                 </DetailsPriceContainer>
             </DetailsContent>

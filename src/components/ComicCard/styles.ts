@@ -42,6 +42,7 @@ export const Title = styled.Text`
     margin-bottom: 15px;
     padding: 15px;
     text-align: center;
+    max-width: 200px;
 
     ${({ theme }) => css`
         font-family: ${theme.FONTS.TITLE};
@@ -54,4 +55,44 @@ export const ButtonContainer = styled.View`
     width: 90%;
     align-items: center;
     justify-content: space-between;
+`;
+
+export const CartContainer = styled.View`
+    align-items: center;
+    justify-content: center;
+`;
+
+export const PriceContent = styled.View`
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 70%;
+`;
+
+export const PriceTitle = styled.Text`
+    font-size: 22px;
+    font-family: ${({ theme }) => theme.FONTS.TITLE};
+    color: white;
+    margin-right: 12px;
+`;
+
+export const PriceSubject = styled.Text`
+    font-size: 22px;
+    font-family: ${({ theme }) => theme.FONTS.TEXT};
+    color: ${({ theme }) => theme.COLORS.PRIMARY_400};
+
+    margin-right: 5px;
+`;
+
+export const QuantityContainer = styled.View`
+    width: 60%;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+`;
+
+export const QuantityText = styled.Text`
+    font-size: 24px;
+    font-family: ${({ theme }) => theme.FONTS.TEXT};
+    color: ${({ theme }) => theme.COLORS.PRIMARY_400};
 `;

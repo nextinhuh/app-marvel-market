@@ -1,7 +1,7 @@
-import { ComicProps } from "@src/screens/ComicList";
+import { ComicProps } from "@hooks/comic";
 
 export type ComicNavigationProps = {
-    comic?: ComicProps;
+    comic: ComicProps;
 }
 
 /*export type OrderNavigationProps = {
@@ -13,6 +13,7 @@ export declare global {
         interface RootParamList {
             home: undefined;
             detail: ComicNavigationProps;
+            cart: undefined;
         }
     }
 }
