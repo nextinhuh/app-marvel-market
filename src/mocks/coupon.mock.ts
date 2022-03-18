@@ -1,4 +1,4 @@
-export type CounpProps = {
+export type CouponProps = {
     value: string;
     isRare: boolean;
 }

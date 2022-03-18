@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { ActivityIndicator, FlatList } from 'react-native';
+import { Badge } from 'react-native-paper';
 
 import { Container, Header } from './styles';
 
@@ -13,7 +14,14 @@ import { Button } from '@components/Button';
 export function ComicList() {
     const [search, setSearch] = useState('');
 
-    const { fetchComics, isRefreshing, reachedComics, comicList, addComicToCart } = useComic();
+    const {
+        fetchComics,
+        isRefreshing,
+        reachedComics,
+        comicList,
+        addComicToCart,
+        comicCartList
+    } = useComic();
 
     const navigation = useNavigation();
 
@@ -49,21 +57,38 @@ export function ComicList() {
                     onClear={handleSearchClear}
                 />
 
+                <Button
+                    hasCartIcon
+                    style={{
+                        borderColor: '#fff',
+                        alignSelf: 'flex-end',
+                        marginTop: 20,
+                        marginRight: 10,
+                        width: 40,
+                        height: 40,
+                        borderRadius: 20
+                    }}
+                    onPress={handleCart}
+                />
+
+                <Badge
+                    style={{
+                        position: 'absolute',
+                        top: 145,
+                        right: 30,
+                        backgroundColor: 'pink',
+                        fontSize: 16,
+                        fontWeight: 'bold'
+                    }}
+                >{comicCartList.length}</Badge>
+
                 <Divider
-                    style={{ marginTop: 40, height: 3 }}
+                    style={{ marginTop: 20, height: 3 }}
                 />
 
             </Header>
 
-            <Button
-                hasCartIcon
-                style={{
-                    borderColor: '#fff',
-                    alignSelf: 'flex-end',
-                    marginRight: 30
-                }}
-                onPress={handleCart}
-            />
+
 
             <FlatList
                 data={comicList}

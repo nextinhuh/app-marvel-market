@@ -8,7 +8,7 @@ import { Alert } from "react-native";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import { api } from '../api';
-import { CounpProps, CouponList } from "../mocks/coupon.mock";
+import { CouponProps, CouponList } from "../mocks/coupon.mock";
 
 export type ComicProps = {
     id: string;
@@ -75,15 +75,11 @@ const COMIC_COLLECTION = '@marvelmarkit:comics';
 export const ComicContext = createContext({} as ComicContextData);
 
 function ComicProvider({ children }: ComicProviderProps) {
-    const [couponUsed, setCouponUsed] = useState<CounpProps>();
+    const [couponUsed, setCouponUsed] = useState<CouponProps>({} as CouponProps);
     const [comicList, setComicList] = useState<ComicProps[]>([]);
     const [comicCartList, setComicCartList] = useState<ComicProps[]>([]);
     const [comicsLimit, setComicsLimit] = useState(8);
     const [isRefreshing, setIsRefreshing] = useState<boolean>(false);
-
-    //TO DO: fazer lista de quadrinhos no carrinho
-    // fazer mock de cupons
-    // criar tag aleatória para cada quadrinho (RARO/COMUM)
 
     async function fetchComics(): Promise<ComicProps[]> {
         const storedComics = await AsyncStorage.getItem(COMIC_COLLECTION);
@@ -242,9 +238,9 @@ function ComicProvider({ children }: ComicProviderProps) {
     }
 
     function verifyDiscount(value: number): number {
-        if (couponUsed?.isRare) {
+        if (couponUsed && couponUsed.isRare) {
             return Number((value * 0.25).toFixed(2));
-        } else {
+        } else if (Object.keys(couponUsed).length > 0) {
             const verifyComicRare = comicCartList.filter(comicData => {
                 if (comicData.rare) {
                     return comicData;
@@ -253,11 +249,13 @@ function ComicProvider({ children }: ComicProviderProps) {
 
             if (verifyComicRare.length > 0) {
                 Alert.alert('Cupom', 'Algum quadrinho adicionado é raro, e o cupom utilizado não era, o cupom foi removido!');
-                setCouponUsed({} as CounpProps);
+                setCouponUsed({} as CouponProps);
                 return 0;
             } else {
                 return Number((value * 0.10).toFixed(2));
             }
+        } else {
+            return 0;
         }
     }
 
