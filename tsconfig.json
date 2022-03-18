@@ -4,6 +4,9 @@
     "strict": true,
     "baseUrl": "./",
     "paths": {
+      "@env": [
+        ".env"
+      ],
       "@src/*": [
         "./src/*"
       ],
@@ -21,4 +24,7 @@
       ],
     }
   },
+  "typeRoots": [
+    "./src/@types"
+  ]
 }
