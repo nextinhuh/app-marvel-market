@@ -31,6 +31,7 @@ export function Button({
 
             {hasCartIcon &&
                 <MaterialIcons
+                    testID="cart-icon"
                     name="add-shopping-cart"
                     color={COLORS.PRIMARY_400}
                     size={24}
@@ -38,6 +39,7 @@ export function Button({
 
             {hasArrowLeftIcon &&
                 <AntDesign
+                    testID="arrow-icon"
                     name="arrowleft"
                     color='#FFF'
                     size={24}
@@ -46,6 +48,7 @@ export function Button({
 
             {hasPlusIcon &&
                 <AntDesign
+                    testID="plus-icon"
                     name="plus"
                     color='#FFF'
                     size={19}
@@ -57,6 +60,7 @@ export function Button({
 
             {hasMinusIcon &&
                 <AntDesign
+                    testID="minus-icon"
                     name="minus"
                     color='#FFF'
                     size={24}
@@ -67,7 +71,7 @@ export function Button({
             }
 
             {!hasArrowLeftIcon && !hasCartIcon &&
-                <Title>
+                <Title testID="title-button">
                     {title}
                 </Title>
             }

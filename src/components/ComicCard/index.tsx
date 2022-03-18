@@ -40,7 +40,10 @@ export function ComicCard({
     return (
         <Container {...rest}>
             <CardContent>
-                <Image source={{ uri: comic.uri }} />
+                <Image
+                    testID="image-component"
+                    source={{ uri: comic.uri }}
+                />
 
                 {hasDescription ? (
                     <DescriptionContainer>
@@ -57,6 +60,7 @@ export function ComicCard({
 
                         <ButtonContainer>
                             <Button
+                                testID="move-to-details-button"
                                 title='Detalhes'
                                 style={{
                                     width: 95
@@ -65,6 +69,7 @@ export function ComicCard({
                             />
 
                             <Button
+                                testID="add-to-cart-button"
                                 type='secondary'
                                 hasCartIcon
                                 style={{
@@ -79,6 +84,7 @@ export function ComicCard({
                         <Title>{comic.title}</Title>
 
                         <Badge
+                            testID="badge-rarity"
                             style={{
                                 position: 'absolute',
                                 top: 10,

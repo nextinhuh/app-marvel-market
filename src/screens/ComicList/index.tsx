@@ -51,6 +51,7 @@ export function ComicList() {
         <Container>
             <Header>
                 <Search
+                    testID="search-component"
                     onChangeText={setSearch}
                     value={search}
                     onSearch={handleSearch}
@@ -58,6 +59,7 @@ export function ComicList() {
                 />
 
                 <Button
+                    testID="move-to-cart-button"
                     hasCartIcon
                     style={{
                         borderColor: '#fff',
@@ -72,6 +74,7 @@ export function ComicList() {
                 />
 
                 <Badge
+                    testID="quantity-itens-badged"
                     style={{
                         position: 'absolute',
                         top: 145,
@@ -80,7 +83,7 @@ export function ComicList() {
                         fontSize: 16,
                         fontWeight: 'bold'
                     }}
-                >{comicCartList.length}</Badge>
+                >{comicCartList?.length}</Badge>
 
                 <Divider
                     style={{ marginTop: 20, height: 3 }}
@@ -95,6 +98,7 @@ export function ComicList() {
                 keyExtractor={item => item.id}
                 renderItem={({ item }) => (
                     <ComicCard
+                        testID="comic-card-item-component"
                         hasDescription
                         comic={item}
                         onDetail={() => handleDetail(item)}
