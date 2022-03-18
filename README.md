@@ -12,7 +12,7 @@ Trata-se de um aplicativo para vendas fictícias de revistas em quadrinho, utili
 
 <justify>Um aplicativo criado para um teste profissional com o intuito de demonstrar as minhas habilidades com o framework **React Native**, utilizando ferramentas como **Styled-components** para a estilização dos componentes, o **Jest** para a realização  dos testes (até o momento testes unitários em cada componente), a biblioteca do **axios** para consumo de API. Por fim, foi utilizado o pacote **Stack** do **React Navigaton** para as navegações de tela do APP.</justify> 
 
-## Como instalar
+## Como instalar :wrench:
 
 Para baixar o projeto siga as instruções abaixo:
 
