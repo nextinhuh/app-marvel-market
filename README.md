@@ -2,7 +2,7 @@
 
 ## Sobre o APP :iphone:
 
-Trata-se de um aplicativo para vendas fictícias de revistas em quadrinho, utilizando a API pública da produtora MARVEL DC. o aplicativo dispõem de uma listagem de revistas com valores (fictícios) e grau de raridade (fictícios), podendo ainda no ato da compra ser adicionados cupons para desconto no valor total (fictícios). Por fim, o aplicativo possui uma fácil navegação, clara e objetiva com rês telas, sendo elas: 
+Trata-se de um aplicativo para vendas fictícias de revistas em quadrinho, utilizando a API pública da produtora MARVEL DC. o aplicativo dispõem de uma listagem de revistas com valores (fictícios) e grau de raridade (fictícios), podendo ainda no ato da compra ser adicionados cupons para desconto no valor total (fictícios). Por fim, o aplicativo possui uma fácil navegação, clara e objetiva com três telas, sendo elas: 
 
 * 1º tela principal (listagem quadrinhos disponíveis); 
 * 2º tela de detalhes (quadrinhos específicos); 
